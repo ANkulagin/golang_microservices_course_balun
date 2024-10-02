@@ -111,8 +111,7 @@ func getNoteClient(id int64) (Note, error) {
 	}
 	// Гарантируем закрытие тела ответа после завершения функции
 	defer func(Body io.ReadCloser) {
-		err := Body.Close()
-		if err != nil {
+		if err := Body.Close(); err != nil {
 			// Логируем ошибку, если не удалось закрыть тело ответа
 			log.Fatal("Failed to close body:", err)
 		}
